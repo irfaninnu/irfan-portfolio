@@ -1,0 +1,82 @@
+<!-- Sticky Navigation Bar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <a href="#home" class="nav-logo">
+      <span class="logo-text"
+        >IRFAN S<span class="logo-highlight">.</span></span
+      >
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#achievements" class="nav-link">Achievements</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- Theme & Background Controls -->
+      <div class="theme-controls">
+        <div class="control-block">
+          <button
+            type="button"
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            🌙
+          </button>
+          <span class="control-text">Theme</span>
+        </div>
+        <div class="control-block">
+          <div class="bg-picker" id="bgPicker" aria-label="Background selector">
+            <button
+              type="button"
+              class="bg-swatch active"
+              data-bg="default"
+              aria-label="Default background"
+              title="Default background"
+            ></button>
+            <button
+              type="button"
+              class="bg-swatch"
+              data-bg="mist"
+              aria-label="Mist background"
+              title="Mist background"
+            ></button>
+            <button
+              type="button"
+              class="bg-swatch"
+              data-bg="aurora"
+              aria-label="Aurora background"
+              title="Aurora background"
+            ></button>
+            <button
+              type="button"
+              class="bg-swatch"
+              data-bg="twilight"
+              aria-label="Twilight background"
+              title="Twilight background"
+            ></button>
+          </div>
+          <span class="control-text">Bg</span>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Navigation Overlay -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
