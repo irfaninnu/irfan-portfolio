@@ -15,6 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const CONTACT_EMAIL = "irfaninnu663@gmail.com";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const distPath = path.join(__dirname, "../dist");
 
 // Security headers with Helmet
 app.use(
@@ -37,20 +38,6 @@ app.use(compression());
 
 // Static files middleware
 app.use(
-  "/css",
-  express.static(path.join(__dirname, "../public/css"), {
-    maxAge: "1y",
-    etag: true,
-  }),
-);
-app.use(
-  "/js",
-  express.static(path.join(__dirname, "../public/js"), {
-    maxAge: "1y",
-    etag: true,
-  }),
-);
-app.use(
   "/assets",
   express.static(path.join(__dirname, "../public/assets"), {
     maxAge: "1y",
@@ -64,28 +51,22 @@ app.use(
     etag: false,
   }),
 );
+app.use(
+  express.static(distPath, {
+    maxAge: "1y",
+    etag: true,
+    index: false,
+  }),
+);
 
 // Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// View engine setup
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../src/views"));
-
 // Cache control middleware for performance
 app.use((req, res, next) => {
   res.setHeader("Cache-Control", "public, max-age=3600");
   next();
-});
-
-// Main route - Portfolio page
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "IRFAN S | Full Stack Developer & QA Automation Engineer",
-    description:
-      "Professional portfolio of IRFAN S - Full Stack Developer, Software Testing Engineer, and Data Analytics Enthusiast based in Bangalore, India.",
-  });
 });
 
 app.post("/contact", async (req, res) => {
@@ -153,13 +134,9 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).render("index", {
-    title: "Page Not Found | Irfan Portfolio",
-    description:
-      "The page you're looking for does not exist. Explore the portfolio for projects, skills, and contact information.",
-  });
+// React Router fallback for production.
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
 });
 
 // Server start for local development. Vercel imports the exported app directly.
