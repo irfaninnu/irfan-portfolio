@@ -130,6 +130,7 @@ button {
 .section {
   padding: clamp(54px, 8vw, 100px) 0;
   position: relative;
+  scroll-margin-top: 112px;
 }
 
 .section::before {
@@ -171,6 +172,14 @@ button {
   right: 0;
   z-index: 1100;
   pointer-events: none;
+  transform: translateY(0);
+  transition: transform 260ms ease, opacity 220ms ease;
+  will-change: transform;
+}
+
+.navbar-wrap.navbar-hidden {
+  transform: translateY(-112%);
+  opacity: 0;
 }
 
 .navbar {

@@ -15,20 +15,41 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState("#home");
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const updateActive = () => {
       let current = "#home";
+      const currentScrollY = window.scrollY;
 
       navItems.forEach((item) => {
         const section = document.querySelector(item.to);
 
-        if (section && window.scrollY >= section.offsetTop - 160) {
+        if (section && currentScrollY >= section.offsetTop - 160) {
           current = item.to;
         }
       });
 
       setActive(current);
+
+      if (isOpen) {
+        setIsHidden(false);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      const isScrollingDown = currentScrollY > lastScrollY + 8;
+      const isScrollingUp = currentScrollY < lastScrollY - 8;
+
+      if (currentScrollY < 120 || isScrollingUp) {
+        setIsHidden(false);
+      } else if (isScrollingDown) {
+        setIsHidden(true);
+      }
+
+      lastScrollY = currentScrollY;
     };
 
     updateActive();
@@ -39,7 +60,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", updateActive);
       window.removeEventListener("resize", updateActive);
     };
-  }, []);
+  }, [isOpen]);
 
   const close = () => setIsOpen(false);
 
@@ -56,7 +77,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="navbar-wrap">
+    <header className={`navbar-wrap${isHidden ? " navbar-hidden" : ""}`}>
       <nav className="navbar" aria-label="Primary navigation">
         <button className="nav-logo logo-button" type="button" onClick={() => goTo("#home")}>
           IRFAN S<span>.</span>
