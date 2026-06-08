@@ -1,15 +1,8 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/contact",
       "destination": "/api/contact"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
