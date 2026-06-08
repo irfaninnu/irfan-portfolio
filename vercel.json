@@ -1,15 +1,15 @@
 {
   "version": 2,
   "buildCommand": "npm run build",
-  "functions": {
-    "src/server.js": {
-      "includeFiles": "{dist/**,public/**}"
-    }
-  },
+  "outputDirectory": "dist",
   "rewrites": [
     {
+      "source": "/contact",
+      "destination": "/api/contact"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/src/server.js"
+      "destination": "/index.html"
     }
   ]
 }
