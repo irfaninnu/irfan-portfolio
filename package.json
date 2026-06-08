@@ -5,6 +5,7 @@
   "main": "src/client/main.jsx",
   "scripts": {
     "build": "vite build",
+    "vercel-build": "vite build",
     "preview": "vite preview",
     "start": "vite preview",
     "dev": "vite --host 0.0.0.0"
