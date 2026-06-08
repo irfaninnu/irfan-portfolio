@@ -2,13 +2,12 @@
   "name": "irfan-portfolio",
   "version": "1.0.0",
   "description": "Premium Professional Portfolio - IRFAN S",
-  "main": "src/server.js",
+  "main": "src/client/main.jsx",
   "scripts": {
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node src/server.js",
-    "dev": "vite --host 0.0.0.0",
-    "server": "node src/server.js"
+    "start": "vite preview",
+    "dev": "vite --host 0.0.0.0"
   },
   "keywords": [
     "portfolio",
@@ -22,11 +21,8 @@
   "dependencies": {
     "@react-three/fiber": "^9.6.1",
     "@vitejs/plugin-react": "^6.0.2",
-    "compression": "^1.7.4",
     "dotenv": "^17.4.2",
-    "express": "^4.18.2",
     "framer-motion": "^12.40.0",
-    "helmet": "^7.1.0",
     "nodemailer": "^8.0.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
